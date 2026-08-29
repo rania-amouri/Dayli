@@ -1,4 +1,10 @@
 # Dayli
+![Dayli Desktop](dayli-desktop.png)
+
+<p align="center">
+  <img src="dayli-mobile.png" alt="Dayli Mobile" width="300">
+  <img src="dayli-dark.png" alt="Dayli Dark Mode" width="300">
+</p>
 A modern daily task management and productivity web app.
 ![Dayli Desktop](dayli-desktop.png)
 
