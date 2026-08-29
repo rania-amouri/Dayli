@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Dayli - Une application simple pour organiser sa journée."
+    >
+
+    <meta
+        name="theme-color"
+        content="#ffffff"
+    >
+
+    <title>Dayli — Organise ta journée</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <span>✓</span>
+                Dayli
+            </div>
+
+
+            <nav>
+
+                <button
+                    class="nav-button active"
+                    data-filter="all"
+                >
+                    <span>📋</span>
+                    Toutes
+                </button>
+
+
+                <button
+                    class="nav-button"
+                    data-filter="active"
+                >
+                    <span>⏳</span>
+                    En cours
+                </button>
+
+
+                <button
+                    class="nav-button"
+                    data-filter="completed"
+                >
+                    <span>✓</span>
+                    Terminées
+                </button>
+
+
+                <button
+                    class="nav-button"
+                    data-filter="overdue"
+                >
+                    <span>⚠️</span>
+                    En retard
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <button
+                    id="themeButton"
+                    class="theme-button"
+                >
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Mode sombre</span>
+                </button>
+
+
+                <div class="sidebar-footer">
+
+                    <p>Dayli</p>
+
+                    <small>
+                        Personal productivity app
+                    </small>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN
+        ========================== -->
+
+        <main class="main">
+
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <div>
+
+                    <p class="welcome">
+                        Bonjour 👋
+                    </p>
+
+                    <h1>
+                        Ma journée
+                    </h1>
+
+                    <p
+                        id="currentDate"
+                        class="current-date"
+                    ></p>
+
+                </div>
+
+
+                <button
+                    id="addTaskButton"
+                    class="primary-button"
+                >
+                    + Ajouter une tâche
+                </button>
+
+            </header>
+
+
+
+            <!-- =========================
+                 PROGRESSION
+            ========================== -->
+
+            <section class="progress-card">
+
+                <div class="progress-top">
+
+                    <div>
+
+                        <p class="progress-label">
+                            Progression de la journée
+                        </p>
+
+                        <strong id="progressText">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <span id="progressMessage">
+                        Commence ta journée 🚀
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 STATS
+            ========================== -->
+
+            <section class="stats">
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        📋
+                    </span>
+
+                    <div>
+
+                        <p>
+                            Total
+                        </p>
+
+                        <strong id="totalTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        ⏳
+                    </span>
+
+                    <div>
+
+                        <p>
+                            En cours
+                        </p>
+
+                        <strong id="activeTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <p>
+                            Terminées
+                        </p>
+
+                        <strong id="completedTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        ⚠️
+                    </span>
+
+                    <div>
+
+                        <p>
+                            En retard
+                        </p>
+
+                        <strong id="overdueTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 SEARCH
+            ========================== -->
+
+            <section class="toolbar">
+
+                <div class="search-container">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Rechercher une tâche..."
+                    >
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 TASKS
+            ========================== -->
+
+            <section class="tasks-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Mes tâches
+                        </h2>
+
+                        <p
+                            id="activeFilterText"
+                            class="filter-text"
+                        >
+                            Toutes les tâches
+                        </p>
+
+                    </div>
+
+
+                    <span id="taskCounter">
+                        0 tâche
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="taskList"
+                    class="task-list"
+                ></div>
+
+
+                <div
+                    id="emptyState"
+                    class="empty-state"
+                >
+
+                    <div class="empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        Aucune tâche
+                    </h3>
+
+                    <p>
+                        Ajoute une tâche pour commencer ta journée.
+                    </p>
+
+                    <button
+                        id="emptyAddButton"
+                        class="secondary-button"
+                    >
+                        + Ajouter une tâche
+                    </button>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================
+         MODAL
+    ========================== -->
+
+    <div
+        id="taskModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="modal-eyebrow">
+                        DAYLI
+                    </p>
+
+                    <h2 id="modalTitle">
+                        Ajouter une tâche
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeModal"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <form id="taskForm">
+
+
+                <!-- TITRE -->
+
+                <label for="taskInput">
+                    Nom de la tâche
+                </label>
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Ex : Réviser JavaScript"
+                    maxlength="120"
+                    required
+                >
+
+
+
+                <!-- PRIORITÉ -->
+
+                <label for="taskPriority">
+                    Priorité
+                </label>
+
+                <select id="taskPriority">
+
+                    <option value="low">
+                        Faible
+                    </option>
+
+                    <option
+                        value="medium"
+                        selected
+                    >
+                        Moyenne
+                    </option>
+
+                    <option value="high">
+                        Haute
+                    </option>
+
+                </select>
+
+
+
+                <!-- CATÉGORIE -->
+
+                <label for="taskCategory">
+                    Catégorie
+                </label>
+
+                <select id="taskCategory">
+
+                    <option value="personal">
+                        🌿 Personnel
+                    </option>
+
+                    <option value="study">
+                        💻 Études
+                    </option>
+
+                    <option value="work">
+                        💼 Travail
+                    </option>
+
+                    <option value="sport">
+                        🏃 Sport
+                    </option>
+
+                    <option value="other">
+                        📌 Autre
+                    </option>
+
+                </select>
+
+
+
+                <!-- DATE -->
+
+                <label for="taskDate">
+                    Date d'échéance
+                </label>
+
+                <input
+                    type="date"
+                    id="taskDate"
+                >
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="secondary-button"
+                    >
+                        Annuler
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Enregistrer
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CONFIRMATION SUPPRESSION
+    ========================== -->
+
+    <div
+        id="deleteModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content small-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="modal-eyebrow">
+                        ATTENTION
+                    </p>
+
+                    <h2>
+                        Supprimer la tâche ?
+                    </h2>
+
+                </div>
+
+                <button
+                    id="closeDeleteModal"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <p class="delete-message">
+                Cette action est définitive.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelDelete"
+                    class="secondary-button"
+                >
+                    Annuler
+                </button>
+
+
+                <button
+                    type="button"
+                    id="confirmDelete"
+                    class="danger-button"
+                >
+                    Supprimer
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
