@@ -1,5 +1,11 @@
 # Dayli
 A modern daily task management and productivity web app.
+![Dayli Desktop](dayli-desktop.png)
+
+<p align="center">
+  <img src="dayli-mobile.png" alt="Dayli Mobile" width="300">
+  <img src="dayli-dark.png" alt="Dayli Dark Mode" width="300">
+</p>
 # 📋 Dayli
 
 **Dayli** est une application web de productivité conçue pour aider à organiser simplement ses tâches quotidiennes et suivre sa progression au fil de la journée.
